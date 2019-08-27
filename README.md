@@ -39,91 +39,91 @@ const client = new webdav.Client(url, {
 ## API
 ### class Client:
 #### constructor(server, options)
-Creates a new client instance.
+> Creates a new client instance.
 #### async list(dir): Promise<Array<Entity>>
-List all entities in the given dir.
+> List all entities in the given dir.
 #### async get(href): Promise<Entity>
-Downloads a file given a href.
+> Downloads a file given a href.
 #### async getProgress(href): Promise<AyncIterable<Progress>>
-Downloads a file given a href. Reports Progress.
+> Downloads a file given a href. Reports Progress.
 #### async put(href, data): Promise<File>
-Uploads some data to a file at the given a href.
+> Uploads some data to a file at the given a href.
 #### async putProgress(href, data): Promise<AyncIterable<Progress>>
-Uploads some data to a file at the given a href. Reports Progress.
+> Uploads some data to a file at the given a href. Reports Progress.
 #### async move(href, loc): Promise<Entity>
-Moves the entity at href to a new location loc.
+> Moves the entity at href to a new location loc.
 #### async delete(href): Promise
-Moves the entity at href.
+> Moves the entity at href.
 #### async mkdir(href): Promise<Directory>
-Creates a directory at a given href.
+> Creates a directory at a given href.
 #### async inspect(href): Promise<Entity>
-Inspects a given href.
+> Inspects a given href.
 #### async getRoot(): Promise<Array<Entity>>
-Inspects the servers root directory.
-This is a convenient entrypoint for the Object-Oriented model.
+> Inspects the servers root directory.
+> This is a convenient entrypoint for the Object-Oriented model.
 #### addTypeParser(type, parser(Response))
-Add a parsing function for a given mime-type. The parsing function should accept a Response instance and return the decoded data.
+> Add a parsing function for a given mime-type. The parsing function should accept a Response instance and return the decoded data.
 
 ### class Entity
 #### href: String
-The entities href
+> The entities href
 #### displayname: String
-The entities displayname
+> The entities displayname
 #### resourcetype: String
-The entities resourcetype
+> The entities resourcetype
 #### creationdate: Date
-The entities creation date
+> The entities creation date
 #### lastmodified: Date
-The entities last modification date
+> The entities last modification date
 #### etag: String
-The entities etag
+> The entities etag
 #### async getParent(): Promise<Directory>
-Gets the entities parent directory
+> Gets the entities parent directory
 #### async move(loc): Promise<Entity>
-Moves the entity to a new location
+> Moves the entity to a new location
 #### async rename(name): Promise<Entity>
-Renames the entity
+> Renames the entity
 #### async delete(): Promise
-Deletes the entity
+> Deletes the entity
 #### async reload(): Promise<Entity>
-Reloads the entity by returning a new, updated one
+> Reloads the entity by returning a new, updated one
 
 ### class Directory extends Entity:
 #### name: String
-The directories name
+> The directories name
 #### async list(): Promise<Array<Entity>>
-Lists all files in this directory
+> Lists all files in this directory
 #### async upload(name, data): Promise<File>
-Uploads a new file to this directory
+> Uploads a new file to this directory
 #### async uploadWithProgress(name, data): Promise<AyncIterable<ProgressReport>>
-Uploads a new file to this directory. Reports Progress.
+> Uploads a new file to this directory. Reports Progress.
 #### async mkdir(name): Promise<Directory>
-Created a new directory inside this one
+> Created a new directory inside this one
 
 ### class File extends Entity:
 #### name: String
-The files name
+> The files name
 #### contentlength: Number
-The files length (in Bytes)
+> The files length (in Bytes)
 #### contenttype: String
-The files mime-type
+> The files mime-type
 #### async download(): Promise<content>
-Downloads the file contents and decodes it using a TypeParser (see Client:addTypeParser).
+> Downloads the file contents and decodes it using a TypeParser (see Client:addTypeParser).
 #### async downloadWithProgress(): Promise<AyncIterable<ProgressReport>>
-Downloads the file contents. Reports Progress.
+> Downloads the file contents. Reports Progress.
 #### async update(data): Promise<File>
-Updates the files contents.
+> Updates the files contents.
 #### async updateWithProgress(data): Promise<AyncIterable<ProgressReport>>
-Updates the files contents. Reports Progress
+> Updates the files contents. Reports Progress
 
 ### ProgressReport
 #### upload: Number 0<x<1,
-The transactions upload progress in percent
+> The transactions upload progress in percent
 #### download: Number 0<x<1,
-The transactions download progress in percent
+> The transactions download progress in percent
 #### done: Boolean,
-Flag if the transaction is done
+> Flag if the transaction is done
 #### error: Error | undefined,
-If an error occured, this field will be set to that error
+> If an error occured, this field will be set to that error
 #### request: XMLHttpRequest,
-The underlying XMLHttpRequest instance
+> The underlying XMLHttpRequest instance
