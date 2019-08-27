@@ -16,6 +16,8 @@ const client = new webdav.Client(url, {
 });
 
 (async function run() {
+  const root = await client.getRoot();
+
   const files = {
     'lyrics.txt': 'Oh, think twice',
     'youandme.txt': 'Another file in paradise',
