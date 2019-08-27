@@ -29,7 +29,7 @@ const client = new webdav.Client(url, {
   const filelist = await demofolder.list();
   console.log(filelist);
 
-  const downloads = filelist.map(async file=>await file.download());
+  const downloads = Promise.all(filelist.map(async file=>await file.download()));
   for (const file of downloads) {
     console.log('Downloaded', file);
   }
