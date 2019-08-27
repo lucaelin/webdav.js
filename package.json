@@ -1,0 +1,27 @@
+{
+  "name": "webdav.js",
+  "version": "1.0.0",
+  "description": "",
+  "main": "webdav.js",
+  "type": "module",
+  "scripts": {
+    "start": "",
+    "test": "npm run test-node && npm run test-browser",
+    "test-browser": "mocha --recursive './*.test.js'",
+    "test-node": "mocha --recursive './*.test.js' --require esm"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "btoa": "^1.2.1",
+    "esm": "^3.2.25",
+    "node-fetch": "^2.6.0",
+    "xhr2": "^0.2.0",
+    "jsdom": "^15.1.1"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "http-server": "^0.11.1",
+    "mocha": "^6.1.4"
+  }
+}
